@@ -1,0 +1,56 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
+  <PropertyGroup>
+    <DemoMode>Demo03</DemoMode>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- Default: build as library -->
+    <OutputType>Library</OutputType>
+
+    <!-- Switch to EXE when DemoMode is enabled -->
+    <OutputType Condition="'$(DemoMode)' != ''">Exe</OutputType>
+  </PropertyGroup>
+
+  
+
+  <!-- Only include Program.cs when in demo mode -->
+  <ItemGroup Condition="'$(DemoMode)' == 'Demo01'">
+    <Compile Include="Demos/Demo01/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' == 'Demo02'">
+    <Compile Include="Demos/Demo02/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' == 'Demo03'">
+    <Compile Include="Demos/Demo03/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' == 'Contacts'">
+    <Compile Include="Demos/DemoContacts/Program.cs" />
+    <Compile Include="Demos/DemoContacts/**\*.cs" />
+  </ItemGroup>
+
+  <!-- Remove Program.cs from library builds -->
+  <ItemGroup Condition="'$(DemoMode)' != 'Demo01'">
+    <Compile Remove="Demos/Demo01/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' != 'Demo02'">
+    <Compile Remove="Demos/Demo02/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' != 'Demo03'">
+    <Compile Remove="Demos/Demo03/Program.cs" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(DemoMode)' != 'Contacts'">
+    <Compile Remove="Demos/DemoContacts/Program.cs" />
+    <Compile Remove="Demos/DemoContacts/**\*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.15" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.15">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+</Project>
