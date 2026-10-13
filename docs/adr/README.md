@@ -12,3 +12,4 @@ Copy [`0000-template.md`](0000-template.md) to start a new one.
 | [0005](0005-query-model.md) | Query model: cached compiled scans, then indexes; no remote expression trees | Accepted |
 | [0006](0006-blob-leases.md) | Blob lifetime: ref-counted leases | Accepted |
 | [0007](0007-build-test-conventions.md) | Build, test, and dependency conventions | **Proposed** |
+| [0008](0008-table-version-semantics.md) | Table semantics: table-wide revision stamps every row | Accepted (delegated) |

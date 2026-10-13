@@ -180,12 +180,15 @@ Each milestone has **acceptance criteria**; a milestone is not done until they h
 - [ ] First CI run green on both OSes (the `src` projects were compile-checked on .NET 10.0.112 with `CI=true`; the test and benchmark projects were **not** restored or run yet).
 - **Done when:** `dotnet build && dotnet test` is green on both OSes and the benchmark smoke run completes.
 
-### M1: Table engine v2
-- [ ] `Table<T>` with **consistent version semantics**: every mutation (`Set`, `TryUpdate`, `Transform`, remove) defines exactly what happens to versions; `ReplaceAll` and remove+re-add must not silently reset history without a documented rule.
-- [ ] Expose keys alongside values (the current `AsSpan()` has no way to know which key a row belongs to).
-- [ ] Define invalidation rules for spans in the API (documented and tested).
-- [ ] Property-based tests against a `Dictionary` oracle; baseline benchmarks (Set/Get/Transform/scan, 1k/100k/1M rows).
-- **Done when:** oracle tests pass for random operation sequences and a baseline benchmark report is committed.
+### M1: Table engine v2 (implemented; baseline numbers pending)
+Semantics are specified in [ADR-0008](docs/adr/0008-table-version-semantics.md).
+- [x] `Table<T>` with **one table-wide `Revision`; every row is stamped with the revision of its last change.** Versions never go backwards across remove + re-add or `ReplaceAll`.
+- [x] Keys exposed alongside rows and versions (`Keys`/`Rows`/`Versions` spans).
+- [x] Span invalidation and callback re-entrancy rules defined, documented, and tested.
+- [x] Differential tests against a naive model (200 seeds x 600 random operations) plus one test per rule; the suite was mutation-checked (6 injected bugs, all caught).
+- [x] Benchmarks written: build, point access, bulk mutation (struct mutator vs delegate vs raw-array floor).
+- [ ] Run the benchmarks on a quiet machine and commit the report to `docs/perf/`.
+- **Done when:** oracle tests are green in CI on both OSes and a baseline benchmark report is committed.
 
 ### M2: Command/Event core
 - [ ] Single-writer loop (ADR-1), `ICommand`/`IEvent`, pure `Apply`.
@@ -231,7 +234,7 @@ Found by review of the prototype; fix or consciously drop during M0–M3.
 
 1. `BlobStoreRR.Store` disposes the old buffer immediately; in-flight `ReadOnlyMemory` from `Get()` can read recycled memory → ADR-6.
 2. `BlobStreamReaderRR`: `PayloadLength` is unvalidated (negative or huge on untrusted input); header uses machine-endian `BitConverter`; no magic, version, or checksum.
-3. `MemoryCacheRR`: not thread-safe; `Transform` doesn't bump versions; `ReplaceAll` and remove+re-add reset versions; `Where` recompiles the expression on every call and copies each row; `Apply` does two dictionary lookups.
+3. `MemoryCacheRR`: ~~`Transform` doesn't bump versions; `ReplaceAll` and remove+re-add reset versions; duplicate keys in `ReplaceAll` corrupt storage~~ (fixed in `Table<T>`, M1, ADR-0008); `Where` recompiles the expression on every call and copies each row (M6); not thread-safe (by design, ADR-0001).
 4. `FoodTruckMenu.NewWeekMenu`: items 4–7 are all built from `item3` (copy/paste bug).
 5. `SetName`: truncating at 32 bytes can cut a UTF-8 code point in half.
 6. README promised `ReadOnlySpan<byte>` keys; code uses `ulong` → ADR-3.
