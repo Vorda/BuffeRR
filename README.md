@@ -187,7 +187,7 @@ Semantics are specified in [ADR-0008](docs/adr/0008-table-version-semantics.md).
 - [x] Span invalidation and callback re-entrancy rules defined, documented, and tested.
 - [x] Differential tests against a naive model (200 seeds x 600 random operations) plus one test per rule; the suite was mutation-checked (6 injected bugs, all caught).
 - [x] Benchmarks written: build, point access, bulk mutation (struct mutator vs delegate vs raw-array floor).
-- [ ] Run the benchmarks on a quiet machine and commit the report to `docs/perf/`.
+- [x] Run the benchmarks on a quiet machine and commit the report to `docs/perf/`.
 - **Done when:** oracle tests are green in CI on both OSes and a baseline benchmark report is committed.
 
 ### M2: Command/Event core

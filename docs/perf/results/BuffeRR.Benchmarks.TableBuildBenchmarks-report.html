@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>BuffeRR.Benchmarks.TableBuildBenchmarks-20261014-135930</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.15.8, Windows 11 (10.0.26200.9711/25H2/2025Update/HudsonValley2)
+AMD Ryzen 5 5600X 3.70GHz, 1 CPU, 12 logical and 6 physical cores
+.NET SDK 10.0.401
+  [Host]     : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+  DefaultJob : .NET 10.0.12 (10.0.12, 10.0.1226.42308), X64 RyuJIT x86-64-v3
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method        </th><th>Length</th><th>Mean   </th><th>Error</th><th>StdDev</th><th>Ratio</th><th>RatioSD</th><th>Gen0</th><th>Gen1</th><th>Gen2</th><th>Allocated</th><th>Alloc Ratio</th>
+</tr>
+</thead><tbody><tr><td>Set_GrowingFromEmpty</td><td>1000</td><td>15.307 &mu;s</td><td>0.2896 &mu;s</td><td>0.2709 &mu;s</td><td>1.00</td><td>0.02</td><td>11.0168</td><td>3.6621</td><td>-</td><td>180.37 KB</td><td>1.00</td>
+</tr><tr><td>Set_Presized</td><td>1000</td><td>7.647 &mu;s</td><td>0.0467 &mu;s</td><td>0.0436 &mu;s</td><td>0.50</td><td>0.01</td><td>4.2419</td><td>0.8469</td><td>-</td><td>69.48 KB</td><td>0.39</td>
+</tr><tr><td>ReplaceAll_Bulk</td><td>1000</td><td>5.304 &mu;s</td><td>0.0892 &mu;s</td><td>0.0835 &mu;s</td><td>0.35</td><td>0.01</td><td>4.2572</td><td>0.9384</td><td>-</td><td>69.63 KB</td><td>0.39</td>
+</tr><tr><td>Set_GrowingFromEmpty</td><td>100000</td><td>3,194.457 &mu;s</td><td>18.0549 &mu;s</td><td>16.0052 &mu;s</td><td>1.00</td><td>0.01</td><td>703.1250</td><td>675.7813</td><td>667.9688</td><td>18495.48 KB</td><td>1.00</td>
+</tr><tr><td>Set_Presized</td><td>100000</td><td>1,230.494 &mu;s</td><td>24.1029 &mu;s</td><td>27.7570 &mu;s</td><td>0.39</td><td>0.01</td><td>505.8594</td><td>505.8594</td><td>505.8594</td><td>6880.23 KB</td><td>0.37</td>
+</tr><tr><td>ReplaceAll_Bulk</td><td>100000</td><td>1,397.795 &mu;s</td><td>8.5860 &mu;s</td><td>7.6113 &mu;s</td><td>0.44</td><td>0.00</td><td>666.0156</td><td>666.0156</td><td>666.0156</td><td>6877.22 KB</td><td>0.37</td>
+</tr><tr><td>Set_GrowingFromEmpty</td><td>1000000</td><td>26,381.622 &mu;s</td><td>318.5665 &mu;s</td><td>297.9873 &mu;s</td><td>1.00</td><td>0.02</td><td>687.5000</td><td>656.2500</td><td>656.2500</td><td>155596.83 KB</td><td>1.00</td>
+</tr><tr><td>Set_Presized</td><td>1000000</td><td>12,562.859 &mu;s</td><td>250.4377 &mu;s</td><td>234.2595 &mu;s</td><td>0.48</td><td>0.01</td><td>671.8750</td><td>671.8750</td><td>671.8750</td><td>70856.67 KB</td><td>0.46</td>
+</tr><tr><td>ReplaceAll_Bulk</td><td>1000000</td><td>11,779.873 &mu;s</td><td>133.0787 &mu;s</td><td>124.4819 &mu;s</td><td>0.45</td><td>0.01</td><td>656.2500</td><td>656.2500</td><td>656.2500</td><td>70855.33 KB</td><td>0.46</td>
+</tr></tbody></table>
+</body>
+</html>
