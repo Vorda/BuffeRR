@@ -1,3 +1,21 @@
 <Solution>
-  <Project Path="BuffeRR.csproj" />
+  <Folder Name="/src/">
+    <Project Path="src/BuffeRR.Core/BuffeRR.Core.csproj" />
+    <Project Path="src/BuffeRR.Engine/BuffeRR.Engine.csproj" />
+    <Project Path="src/BuffeRR.Persistence/BuffeRR.Persistence.csproj" />
+    <Project Path="src/BuffeRR.Protocol/BuffeRR.Protocol.csproj" />
+    <Project Path="src/BuffeRR.Transport/BuffeRR.Transport.csproj" />
+    <Project Path="src/BuffeRR.Server/BuffeRR.Server.csproj" />
+    <Project Path="src/BuffeRR.Client/BuffeRR.Client.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BuffeRR.UnitTests/BuffeRR.UnitTests.csproj" />
+  </Folder>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/BuffeRR.Benchmarks/BuffeRR.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/docs/">
+    <File Path="README.md" />
+    <File Path="docs/adr/README.md" />
+  </Folder>
 </Solution>

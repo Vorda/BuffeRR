@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\BuffeRR.Core\BuffeRR.Core.csproj" />
+    <ProjectReference Include="..\BuffeRR.Protocol\BuffeRR.Protocol.csproj" />
+    <ProjectReference Include="..\BuffeRR.Transport\BuffeRR.Transport.csproj" />
+  </ItemGroup>
+
+</Project>

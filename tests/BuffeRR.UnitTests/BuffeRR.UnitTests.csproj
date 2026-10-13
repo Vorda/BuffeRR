@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- xunit.v3 test projects are executables; they run on Microsoft Testing Platform (see global.json). -->
+    <OutputType>Exe</OutputType>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\BuffeRR.Core\BuffeRR.Core.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Engine\BuffeRR.Engine.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Persistence\BuffeRR.Persistence.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Protocol\BuffeRR.Protocol.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Transport\BuffeRR.Transport.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Server\BuffeRR.Server.csproj" />
+    <ProjectReference Include="..\..\src\BuffeRR.Client\BuffeRR.Client.csproj" />
+  </ItemGroup>
+
+</Project>
